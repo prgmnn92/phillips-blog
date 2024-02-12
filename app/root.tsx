@@ -250,6 +250,7 @@ function App() {
 				</header>
 
 				<div className="flex-1">
+					test
 					<Outlet />
 				</div>
 
