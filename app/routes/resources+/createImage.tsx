@@ -1,6 +1,6 @@
 import { getFormProps, getInputProps, useForm } from '@conform-to/react'
 import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { invariantResponse } from '@epic-web/invariant'
+// import { invariantResponse } from '@epic-web/invariant'
 import {
 	json,
 	redirect,
@@ -83,7 +83,7 @@ export async function action({ request }: ActionFunctionArgs) {
 		)
 	}
 
-	const { image, intent } = submission.value
+	const { image } = submission.value
 
 
 	await prisma.$transaction(async $prisma => {

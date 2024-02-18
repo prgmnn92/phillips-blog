@@ -1,7 +1,7 @@
 import { type Post } from '@prisma/client' 
 import { Link } from '@remix-run/react'
 import React from 'react'
-import { Badge } from './ui/badge'
+// import { Badge } from './ui/badge'
 
 interface PostProps {
 	post: Post
