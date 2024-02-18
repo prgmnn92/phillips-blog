@@ -30,14 +30,12 @@ import {
 	getInstanceInfo,
 } from '#app/utils/litefs.server.ts'
 import { useDebounce, useDoubleCheck } from '#app/utils/misc.tsx'
-import { requireUserWithRole } from '#app/utils/permissions.server.ts'
 
 export const handle: SEOHandle = {
 	getSitemapEntries: () => null,
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	await requireUserWithRole(request, 'admin')
 	const searchParams = new URL(request.url).searchParams
 	const query = searchParams.get('query')
 	if (query === '') {
@@ -62,7 +60,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-	await requireUserWithRole(request, 'admin')
 	const formData = await request.formData()
 	const key = formData.get('cacheKey')
 	const { currentInstance } = await getInstanceInfo()

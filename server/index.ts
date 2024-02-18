@@ -173,15 +173,7 @@ const strongRateLimit = rateLimit({
 const generalRateLimit = rateLimit(rateLimitDefault)
 app.use((req, res, next) => {
 	const strongPaths = [
-		'/login',
-		'/signup',
-		'/verify',
 		'/admin',
-		'/onboarding',
-		'/reset-password',
-		'/settings/profile',
-		'/resources/login',
-		'/resources/verify',
 	]
 	if (req.method !== 'GET' && req.method !== 'HEAD') {
 		if (strongPaths.some(p => req.path.includes(p))) {
