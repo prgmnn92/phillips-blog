@@ -24,6 +24,7 @@ import {
 import { withSentry } from '@sentry/remix'
 import { HoneypotProvider } from 'remix-utils/honeypot/react'
 import { z } from 'zod'
+import BackgroundGrid from './components/backgroundGrid.tsx'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
 import Header from './components/header.tsx'
 import { Logo } from './components/Logo.tsx'
@@ -41,7 +42,6 @@ import { useRequestInfo } from './utils/request-info.ts'
 import { type Theme, setTheme, getTheme } from './utils/theme.server.ts'
 import { makeTimings } from './utils/timing.server.ts'
 import { getToast } from './utils/toast.server.ts'
-import BackgroundGrid from './components/backgroundGrid.tsx'
 
 export const links: LinksFunction = () => {
 	return [

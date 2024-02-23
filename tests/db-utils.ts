@@ -116,18 +116,18 @@ export async function img({
 }
 
 export async function cleanupDb(prisma: PrismaClient) {
-    const tables = await prisma.$queryRaw<
-        { tablename: string }[]
-    >`SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename NOT LIKE 'prisma_migrations';`
+	const tables = await prisma.$queryRaw<
+		{ tablename: string }[]
+	>`SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename NOT LIKE 'prisma_migrations';`
 
-    await prisma.$transaction([
-        // Disable FK constraints to avoid relation conflicts during deletion
-        prisma.$executeRawUnsafe(`SET CONSTRAINTS ALL DEFERRED`),
-        // Delete all rows from each table, preserving table structures
-        ...tables.map(({ tablename }) =>
-            prisma.$executeRawUnsafe(`DELETE from "${tablename}"`),
-        ),
-        // Re-enable FK constraints
-        prisma.$executeRawUnsafe(`SET CONSTRAINTS ALL IMMEDIATE`),
-    ])
+	await prisma.$transaction([
+		// Disable FK constraints to avoid relation conflicts during deletion
+		prisma.$executeRawUnsafe(`SET CONSTRAINTS ALL DEFERRED`),
+		// Delete all rows from each table, preserving table structures
+		...tables.map(({ tablename }) =>
+			prisma.$executeRawUnsafe(`DELETE from "${tablename}"`),
+		),
+		// Re-enable FK constraints
+		prisma.$executeRawUnsafe(`SET CONSTRAINTS ALL IMMEDIATE`),
+	])
 }

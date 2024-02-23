@@ -34,7 +34,7 @@ const projects = [
 		id: 4,
 		title: 'Kursinsel',
 		description:
-			'I provide ongoing Webflow development support to Kursinsel as part of their team.',
+			'I provide ongoing development support for Mixpanel, Uscreen and Webflow to Kursinsel as part of their team.',
 		url: 'https://www.kursinsel.de/',
 	},
 	{
@@ -54,7 +54,7 @@ export default function ProjectsRoute() {
 					title="My Latest Projects & Partnerships"
 					text="Throughout my career, I have contributed to a wide array of projects, fostering long-term partnerships and completing numerous assignments. Below are highlights of my projects and the enduring relationships I've established over the years."
 				/>
-				<div className="mx-auto mt-16 grid max-w-2xl animate-slide-top grid-cols-1 gap-x-8 gap-y-20 [animation-delay:0.4s] [animation-fill-mode:backwards] lg:mx-0 lg:max-w-none lg:grid-cols-3">
+				<div className="mx-auto mt-16 grid max-w-2xl animate-slide-top grid-cols-1 gap-x-8 gap-y-20 [animation-fill-mode:backwards] [animation-delay:0.4s] lg:max-w-screen-lg lg:grid-cols-3">
 					{projects.map(project => (
 						<ProjectCard key={project.id} project={project} />
 					))}

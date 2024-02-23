@@ -1,0 +1,161 @@
+---
+meta:
+  - title: Optimize with memoization in React
+    content:
+      In this article, I will show you how to optimize your React components
+      with memoization. This will help you to avoid unnecessary re-renders and
+      improve the performance of your application.
+    image: 'img/usememo.jpg'
+    date: 20th February 2024
+    dateTime: 2024-02-20
+
+headers:
+  Cache-Control: no-cache
+---
+
+![Main image](/img/usememo.jpg)
+
+# **Performance Optimization with Memoization in React**
+
+The use of memoization can significantly contribute to enhancing the performance
+of your React application. However, there are some important aspects you should
+consider before hastily wrapping all your React components with **`memo`**. In
+this post, I'll explain what **Memoization** exactly is and under what
+circumstances its use is sensible.
+
+## **What exactly is Memoization in React?**
+
+**Memoization** prevents your component from re-rendering as long as the passed
+props do not change. It's particularly important to understand that the props
+comparison is only shallow. This means that for simple data types like strings
+and numbers, the values are directly compared, while for objects, only the
+references are checked. For this reason, it's crucial to generate a new
+reference when making changes in objects, rather than mutating the existing
+object. Otherwise, it could happen that your component does not re-render as
+expected, even if a value within the object changes. For further information, I
+recommend the [official documentation](https://react.dev/reference/react/memo)
+on React Memo.
+
+## **Why should I use Memoization?**
+
+The use of **Memoization** is particularly advisable for computation-heavy
+components, as it helps avoid unnecessary re-renders, thus improving the overall
+performance of your application. The key to effectively using **Memoization**
+lies in understanding when it is appropriate to use it, and when not. Targeted
+application can significantly contribute to efficiency enhancement, while
+excessive or improper use can potentially worsen performance.
+
+## **When does it not make sense to use Memoization?**
+
+A typical example of a potentially disadvantageous use of React Memo is using it
+with a component that receives very dynamic data as props – meaning the data
+changes almost with every render. Imagine a component that displays a time that
+updates every second. Using **Memoization** in this case would hardly offer any
+benefit, as the comparison operations to determine whether the component should
+re-render have to occur every second. Since the props (in this case, the time)
+are constantly changing, applying React Memo results in additional computational
+work without a significant reduction in renderings. This can burden the
+performance rather than improve it, as the costs for comparing the props
+outweigh the savings from avoided re-renderings.
+
+## **When should I use Memoization?**
+
+**Memoization** proves particularly useful for components that are frequently
+re-rendered but receive the same props in most cases. This often applies to
+components that are stable in their presentation but could still be re-rendered
+due to updates from parent components. Another ideal use case for
+**Memoization** is components that process a large amount of data, such as a
+product list with hundreds of entries. In such scenarios, **Memoization** can
+help significantly improve render performance by preventing the component from
+unnecessarily re-rendering if the data has not actually changed.
+
+## **How do I use Memoization in React?**
+
+React offers two different ways to utilize memoization: by using the
+**`useMemo`** hook within a functional component and by wrapping a component
+with the **`React.memo`** Higher-Order Component (HOC). Both methods serve to
+optimize performance, yet they differ in their application and effect.
+
+### **Using the `useMemo` Hook**
+
+**`useMemo`** allows storing the result of a computation-intensive function
+between the renderings of a component, provided the dependencies do not change.
+This is useful to avoid unnecessary calculations on each render.
+
+```jsx
+import React, { useMemo } from 'react'
+
+function Component({ value }) {
+	const calculatedValue = useMemo(() => {
+		// Computation-heavy logic here
+		return value * 2
+	}, [value])
+
+	return <div>{calculatedValue}</div>
+}
+```
+
+In this example, **`calculatedValue`** is recalculated only if **`value`**
+changes, preventing unnecessary calculations.
+
+### **Wrapping a Component with `React.memo`**
+
+**`React.memo`** is a Higher-Order Component that prevents a component from
+unnecessarily re-rendering if its props have not changed. It is particularly
+useful for components that are frequently rendered with the same props.
+
+```jsx
+import React from 'react'
+
+const MyComponent = React.memo(function MyComponent(props) {
+	// Component logic
+	return <div>{/* Render logic */}</div>
+})
+```
+
+In this case, **`MyComponent`** will only re-render if the props change.
+
+### **The Difference**
+
+The main difference between **`useMemo`** and **`React.memo`** lies in their
+scope and purpose:
+
+- **`useMemo`** is used within a component to cache the result of a computation,
+  affecting how values within a component are handled.
+- **`React.memo`** is used to wrap a component itself and optimizes the
+  rendering of the component based on changes to its props.
+
+Both approaches contribute to performance optimization by preventing unnecessary
+calculations or re-renderings. The choice between **`useMemo`** and
+**`React.memo`** depends on the specific requirements of your component or
+application.
+
+## **What Should I Pay Attention To?**
+
+When using **`useMemo`** and other memoization techniques, it's important to
+find a balanced measure. Not every situation requires the use of memoization to
+avoid re-rendering. Excessive use can lead to unnecessary complexity and even
+worsen performance instead of improving it. Here are some key considerations:
+
+- **Avoid excessive optimization**: Start developing your components without
+  premature optimization. Use memoization techniques like **`useMemo`** and
+  **`React.memo`** only when performance bottlenecks have been identified
+  through profiling.
+- **State Lifting**: Sometimes, lifting the state – moving the state up in the
+  component hierarchy – can be a more effective way to manage unnecessary
+  renders, especially in complex component structures.
+- **Profiling and measurement**: Use React's development tools to profile your
+  application and identify components that could benefit from memoization.
+  Measurement should guide your decisions on where to apply optimizations.
+
+## **Conclusion**
+
+**Memoization** is a powerful technique for improving the performance of your
+React application by preventing unnecessary re-renderings. However, its
+effectiveness greatly depends on the context of its use. It's crucial to
+understand when memoization is beneficial and when it might be
+counterproductive. By thoughtfully applying **`useMemo`** and **`React.memo`**
+where they are most effective, you can significantly enhance your application's
+performance without falling into the trap of over-optimization. Always remember
+to measure and profile your application to make informed decisions about where
+these optimizations are truly necessary.

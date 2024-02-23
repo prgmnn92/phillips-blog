@@ -172,9 +172,7 @@ const strongRateLimit = rateLimit({
 
 const generalRateLimit = rateLimit(rateLimitDefault)
 app.use((req, res, next) => {
-	const strongPaths = [
-		'/admin',
-	]
+	const strongPaths = ['/admin']
 	if (req.method !== 'GET' && req.method !== 'HEAD') {
 		if (strongPaths.some(p => req.path.includes(p))) {
 			return strongestRateLimit(req, res, next)

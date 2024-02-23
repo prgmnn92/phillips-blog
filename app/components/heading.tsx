@@ -11,7 +11,7 @@ const Heading: React.FC<HeadingProps> = ({ title, text }) => {
 			<h1 className="animate-slide-top text-3xl font-bold tracking-tight text-primary sm:text-4xl">
 				{title}
 			</h1>
-			<p className="mt-2 animate-slide-top text-lg leading-8 text-primary/80 [animation-delay:0.2s] [animation-fill-mode:backwards]">
+			<p className="mt-2 animate-slide-top text-lg leading-8 text-primary/80 [animation-fill-mode:backwards] [animation-delay:0.2s]">
 				{text}
 			</p>
 		</div>

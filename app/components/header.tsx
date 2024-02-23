@@ -14,8 +14,8 @@ import {
 
 const menuItems = [
 	{ title: 'Home', href: '/' },
-	{ title: 'Blog', href: '/blog' },
 	{ title: 'About', href: '/about' },
+	{ title: 'Resources', href: '/resources' },
 	{ title: 'Projects', href: '/projects' },
 	{ title: 'Contact', href: 'mailto:pargmann92@gmail.com' },
 ]
@@ -71,7 +71,7 @@ function MyNavLink({
 		<NavLink to={href} className={cn('p-2 hover:text-brand', className)}>
 			{({ isActive }) => (
 				<NavigationMenuLink asChild>
-					<span className={isActive ? "text-brand" : ""}>{title}</span>
+					<span className={isActive ? 'text-brand' : ''}>{title}</span>
 				</NavigationMenuLink>
 			)}
 		</NavLink>

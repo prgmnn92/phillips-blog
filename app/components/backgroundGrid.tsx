@@ -3,7 +3,7 @@ import React from 'react'
 const BackgroundGrid = () => {
 	return (
 		<svg
-			className="absolute inset-x-0 top-0 -z-10 h-[100vh] w-full stroke-gray-400 dark:stroke-gray-200 opacity-25 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+			className="absolute inset-x-0 top-0 -z-10 h-[100vh] w-full stroke-gray-400 opacity-25 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)] dark:stroke-gray-200"
 			aria-hidden="true"
 		>
 			<defs>
@@ -18,7 +18,11 @@ const BackgroundGrid = () => {
 					<path d="M.5 200V.5H200" fill="none" />
 				</pattern>
 			</defs>
-			<svg x="50%" y={-1} className="overflow-visible dark:fill-gray-50 fill-gray-500 ">
+			<svg
+				x="50%"
+				y={-1}
+				className="overflow-visible fill-gray-500 dark:fill-gray-50 "
+			>
 				<path
 					d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
 					strokeWidth={0}

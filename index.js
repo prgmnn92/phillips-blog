@@ -10,6 +10,7 @@ sourceMapSupport.install({
 		// get source file without the `file://` prefix or `?t=...` suffix
 		const match = source.match(/^file:\/\/(.*)\?t=[.\d]+$/)
 		if (match) {
+			console.log(source)
 			return {
 				url: source,
 				map: fs.readFileSync(`${match[1]}.map`, 'utf8'),
