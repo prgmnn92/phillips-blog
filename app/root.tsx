@@ -50,13 +50,11 @@ export const links: LinksFunction = () => {
 		// Preload CSS as a resource to avoid render blocking
 		{ rel: 'preload', href: tailwindStyleSheetUrl, as: 'style' },
 		cssBundleHref ? { rel: 'preload', href: cssBundleHref, as: 'style' } : null,
-		{ rel: 'mask-icon', href: '/favicons/mask-icon.svg' },
 		{
 			rel: 'alternate icon',
 			type: 'image/png',
 			href: '/favicons/favicon-32x32.png',
 		},
-		{ rel: 'apple-touch-icon', href: '/favicons/apple-touch-icon.png' },
 		{
 			rel: 'manifest',
 			href: '/site.webmanifest',

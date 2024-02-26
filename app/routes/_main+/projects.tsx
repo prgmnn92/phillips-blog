@@ -1,6 +1,7 @@
 import Container from '#app/components/container'
 import Heading from '#app/components/heading'
 import ProjectCard from '#app/components/projectCard'
+import { MetaFunction } from '@remix-run/node'
 
 const projects = [
 	{
@@ -43,6 +44,13 @@ const projects = [
 		description:
 			'Also a website built with Webflow. The CMS is connected to Airtable through whalesync. I provide ongoing support to the team.',
 		url: 'https://www.targetedprovision.com/',
+	},
+]
+export const meta: MetaFunction = () => [
+	{ title: 'Phillip Pargmann | Projects & Partnerships' },
+	{
+		name: 'Phillip Pargmann',
+		content: 'This page contains information about projects that I worked on and relationships that I built.',
 	},
 ]
 

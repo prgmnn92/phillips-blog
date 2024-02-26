@@ -3,10 +3,10 @@ import Container from '#app/components/container'
 import Heading from '#app/components/heading'
 
 export const meta: MetaFunction = () => [
-	{ title: 'Phillip Pargmann' },
+	{ title: 'Phillip Pargmann | About Me' },
 	{
-		name: 'description',
-		content: 'This is a description of the page',
+		name: 'About Phillip Pargmann',
+		content: 'This page contains information about Phillip Pargmann.',
 	},
 ]
 
@@ -16,7 +16,7 @@ const AboutRoute = () => {
 			<Container>
 				<Heading
 					title="About me"
-					text="Learn how to grow your business with our expert advice."
+					text="Some details about me and my life."
 				/>
 			</Container>
 			<div className="relative isolate mt-16 animate-slide-top overflow-hidden px-6 pb-12 [animation-fill-mode:backwards] [animation-delay:0.4s] sm:pb-32 lg:overflow-visible lg:px-0">
