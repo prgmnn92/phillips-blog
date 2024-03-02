@@ -1,9 +1,10 @@
-import { type LoaderFunctionArgs, json, MetaFunction } from '@remix-run/node'
+import { type LoaderFunctionArgs, json, type MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import BlogCard from '#app/components/blogCard'
 import Container from '#app/components/container'
 import Heading from '#app/components/heading'
 
+import * as thirdPost from '../_mdx+/resources.my-toolbox.mdx'
 import * as secondPost from '../_mdx+/resources.react-optimize-with-memo.mdx'
 import * as firstPost from '../_mdx+/resources.remix-vs-nextjs.mdx'
 
@@ -17,7 +18,7 @@ function postFromModule(mod: any) {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	return json([postFromModule(firstPost), postFromModule(secondPost)])
+	return json([postFromModule(firstPost), postFromModule(secondPost), postFromModule(thirdPost)])
 }
 export const meta: MetaFunction = () => [
 	{
