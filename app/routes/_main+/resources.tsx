@@ -7,6 +7,7 @@ import Heading from '#app/components/heading'
 import * as thirdPost from '../_mdx+/resources.my-toolbox.mdx'
 import * as secondPost from '../_mdx+/resources.react-optimize-with-memo.mdx'
 import * as firstPost from '../_mdx+/resources.remix-vs-nextjs.mdx'
+import * as fourthPost from '../_mdx+/resources.webflow-pros-cons.mdx'
 
 function postFromModule(mod: any) {
 	return {
@@ -18,7 +19,7 @@ function postFromModule(mod: any) {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	return json([postFromModule(firstPost), postFromModule(secondPost), postFromModule(thirdPost)])
+	return json([postFromModule(firstPost), postFromModule(secondPost), postFromModule(thirdPost), postFromModule(fourthPost)])
 }
 export const meta: MetaFunction = () => [
 	{
