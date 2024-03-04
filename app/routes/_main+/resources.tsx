@@ -1,4 +1,8 @@
-import { type LoaderFunctionArgs, json, type MetaFunction } from '@remix-run/node'
+import {
+	type LoaderFunctionArgs,
+	json,
+	type MetaFunction,
+} from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import BlogCard from '#app/components/blogCard'
 import Container from '#app/components/container'
@@ -19,7 +23,12 @@ function postFromModule(mod: any) {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	return json([postFromModule(firstPost), postFromModule(secondPost), postFromModule(thirdPost), postFromModule(fourthPost)])
+	return json([
+		postFromModule(firstPost),
+		postFromModule(secondPost),
+		postFromModule(thirdPost),
+		postFromModule(fourthPost),
+	])
 }
 export const meta: MetaFunction = () => [
 	{
@@ -27,7 +36,8 @@ export const meta: MetaFunction = () => [
 	},
 	{
 		name: 'Phillip Pargmann',
-		content: 'Resources, Information, Posts, Thougths. Everything what comes to my mind.',
+		content:
+			'Resources, Information, Posts, Thougths. Everything what comes to my mind.',
 	},
 ]
 
@@ -39,7 +49,9 @@ function BlogList() {
 		<div className="mx-auto mt-16 grid max-w-2xl animate-slide-top grid-cols-1 gap-x-8 gap-y-20 [animation-delay:0.4s] [animation-fill-mode:backwards] lg:mx-0 lg:max-w-none lg:grid-cols-3">
 			{posts.length === 0 && <div>Something is coming soon.</div>}
 			{data && posts.length > 0
-				? posts.map(post => <BlogCard key={post.id} post={post} />)
+				? posts
+						.sort((a, b) => (a.date > b.date ? -1 : 1))
+						.map(post => <BlogCard key={post.id} post={post} />)
 				: null}
 		</div>
 	)
